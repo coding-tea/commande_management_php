@@ -11,9 +11,9 @@ class Details_Commande
     static $columns = [
         "id" => Type::PRIMARY,
         "commande_id" => Type::INT,
-        "produt_id" => Type::INT,
-        " " => Type::FORIGNCOMM,
-        " " => Type::FORIGNPROD,
+        "product_id" => Type::INT,
+        "comm" => Type::FORIGNCOMM,
+        "prod" => Type::FORIGNPROD,
         "quantity" => Type::INT,
     ];
 

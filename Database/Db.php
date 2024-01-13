@@ -8,7 +8,7 @@ use Type;
 use Models\Clients;
 use Models\Commandes;
 use Models\Details_Commande;
-use Models\Produts;
+use Models\Products;
 
 class Db
 {
@@ -38,7 +38,7 @@ class Db
     public static function createTables()
     {
         Db::make(Clients::$table, Clients::$columns);
-        Db::make(Produts::$table, Produts::$columns);
+        Db::make(Products::$table, Products::$columns);
         Db::make(Commandes::$table, Commandes::$columns);
         Db::make(Details_Commande::$table, Details_Commande::$columns);
     }
@@ -70,9 +70,9 @@ class Db
         $sql = "DROP TABLE IF EXISTS " . $table . ";" . "CREATE TABLE $table (";
         foreach ($columns as $key => $value) {
             if (
-                $value->value == Type::FORIGNCLIENT ||
-                $value->value == Type::FORIGNCOMM ||
-                $value->value == Type::FORIGNPROD
+                $value->value == Type::FORIGNCLIENT->value ||
+                $value->value == Type::FORIGNCOMM->value ||
+                $value->value == Type::FORIGNPROD->value
             ) {
                 $sql .= ($count != count($columns)) ? $value->value . "," : $value->value;
             } else {

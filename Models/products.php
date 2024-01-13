@@ -4,9 +4,9 @@ namespace Models;
 
 use Type;
 
-class Produts
+class Products
 {
-    static $table = "produits";
+    static $table = "products";
     static $columns = [
         "id" => Type::PRIMARY,
         "code" => Type::STRING,
