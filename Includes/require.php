@@ -11,5 +11,6 @@ require "./Models/Commandes.php";
 require "./Models/products.php";
 require "./Models/Details_Commande.php";
 
-//other requires
+//compoennts
 require "./Components/Form.php";
+require "./Components/Table.php";
