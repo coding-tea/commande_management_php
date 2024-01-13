@@ -13,6 +13,7 @@ Form::form([
 ]);
 
 Table::data_table(
+    "clients",
     [
     "id" => Heads::TEXT,
     "name" => Heads::TEXT,
