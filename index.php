@@ -21,7 +21,8 @@ Table::data_table(
     "adress" => Heads::TEXT,
     ],
     [
-        
+        "add.php" => Actions::ADD,
+        "delete.php" => Actions::DELETE
     ],
     Db::query("select * from clients", [], 'fetchAll', PDO::FETCH_ASSOC)
 );
