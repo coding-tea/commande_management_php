@@ -36,8 +36,10 @@ class Table
 
         //start
         $start = 0;
+        $page = 1;
         if (isset($_GET["page"])) {
             $start = $_GET["page"] * $data_per_page;
+            $page = $_GET["page"];
         }
 
         //count data
@@ -47,18 +49,19 @@ class Table
         $stmt = Db::getConnection()->query("SELECT * from $table LIMIT $start, $data_per_page ");
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        echo '<nav aria-label="Page navigation example">';
-        echo '<ul class="pagination">';
+        if ($total > 1) {
+            echo '<nav aria-label="Page navigation example">';
+            echo '<ul class="pagination">';
+            echo "<li class='page-item'><a class='page-link' href='?page=<?= " . ($page > 1) ? $_GET['page'] - 1 : 0 . "?>'>Previous</a></li> <?php else: ?>";
 
-        echo "<li class='page-item'><a class='page-link' href='?page=<?= " . isset($_GET['page'] && $_GET['page'] > 0 ) ? $_GET['page'] - 1 : 0 . "?>'>Previous</a></li> <?php else: ?>";
+            for ($i = 0; $i < $total; $i++) {
+                echo "<li class='page-item'><a class='page-link' href='?page=<?= " . $i . "?>'>" . $i + 1 . "</a></li> <?php else: ?>";
+            }
 
-        for ($i = 0; $i < $total; $i++) {
-            echo "<li class='page-item'><a class='page-link' href='?page=<?= " . $i . "?>'>" . $i + 1 . "</a></li> <?php else: ?>";
+            echo "<li class='page-item'><a class='pagse-link' href='?page=<?= " . ($page < $total) ? $page : 0 . "?>'>Next</a></li> <?php else: ?>";
+
+            echo '</nav>';
+            echo '</ul>';
         }
-
-        echo "<li class='page-item'><a class='pagse-link' href='?page=<?= " . isset($_GET['page'] && $_GET['page'] < $total )? $_GET['page'] + 1 : 0 . "?>'>Next</a></li> <?php else: ?>";
-
-        echo '</nav>';
-        echo '</ul>';
     }
 }
