@@ -84,4 +84,39 @@ class Db
         echo $sql . "</br> </br>";
         Db::query($sql);
     }
+
+    public static function create($table, $rows){
+        $sql = "INSERT INTO $table values";
+        foreach($rows as $row){
+            $sql .= "(";
+            foreach($row as $column){
+                $sql .= $column;
+            }
+            $sql .= isset($row) ? ")," : ")";
+        }
+        $sql .= ";";
+        Db::query($sql, [], "false");
+    }
+
+    public static function find($table, $id){
+        $sql = "SELECT * FROM  $table where id : ?";
+        $item = Db::query($sql, [$id], "fetch");
+        return $item;
+    }
+
+    public static function delete($table, $id){
+        $sql = "DELETE FROM $table where id : ?";
+        Db::query($sql, [$id], "false");
+    }
+
+    public static function update($table, $id, $data){
+        $sql = "UPDATE $table set";
+        foreach($data as $row){
+            foreach($row as $key => $value){
+                $sql .= isset($key) ? "$key = $value," : "$key = $value";
+            }
+        }
+        $sql .= "WHERE id = ? ;";
+        Db::query($sql, [$id], "false");
+    }
 }
