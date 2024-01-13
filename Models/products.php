@@ -15,6 +15,13 @@ class Products
         "amount" => Type::FLOAT,
     ];
 
+    static $heads = [
+        "id" => Type::PRIMARY,
+        "code" => Type::STRING,
+        "name" => Type::STRING,
+        "description" => Type::TEXT,
+        "amount" => Type::FLOAT,
+    ];
 
     public function __construct()
     {

@@ -43,7 +43,7 @@ class Db
         Db::make(Details_Commande::$table, Details_Commande::$columns);
     }
 
-    public static function query($sql = "", $args = [], $fetchtype = "fetch")
+    public static function query($sql = "", $args = [], $fetchtype = "fetch", $type = PDO::FETCH_OBJ)
     {
         $stmt = Db::getConnection()->prepare($sql);
         $flag = $stmt->execute($args);
@@ -51,10 +51,10 @@ class Db
         if ($flag) {
             switch ($fetchtype) {
                 case "fetch":
-                    $data = $stmt->fetch(PDO::FETCH_OBJ);
+                    $data = $stmt->fetch($type);
                     break;
                 case "fetchAll":
-                    $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+                    $data = $stmt->fetchAll($type);
                     break;
                 default:
                     break;
