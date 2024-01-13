@@ -1,8 +1,12 @@
 <?php
 
+use Components\Form;
 use Database\Db;
 
 require "./Includes/require.php";
 
-Db::createTables();
-?>
+Form::form([
+    "name" => Heads::TEXT,
+    "email" => Heads::EMAIL,
+    "phone" => Heads::TEXT,
+]);
