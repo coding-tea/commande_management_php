@@ -4,6 +4,7 @@
 require "./Database/Db.php";
 require "./Enums/Type.php";
 require "./Enums/Heads.php";
+require "./Enums/Actions.php";
 
 //models
 require "./Models/Clients.php";
